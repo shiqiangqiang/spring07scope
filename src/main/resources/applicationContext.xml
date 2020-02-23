@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+        1) spring默认bean是单例激进加载的，如果设置为原型prototype,则为懒加载，调用的时候才会初始化依赖
+        2) scope="singleton" lazy-init="true",这是成对出现的
+    -->
+    <bean id="notepad1" class="com.sqq.demo.Notepad" scope="prototype"/>
+
+    <!--容器初始化这个bean对象的时候自动调用init方法，容器关闭或是销毁的时候自动调用destroy方法-->
+    <bean id="notepad2" class="com.sqq.demo.Notepad" scope="singleton" lazy-init="true" init-method="init" destroy-method="destroy"/>
+
+
+</beans>
